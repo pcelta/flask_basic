@@ -12,6 +12,13 @@ def hello_world():
 def provisioner():
 	return 'Provisioner...'
 
+@app.route('/')
+def brincando()
+	from src.pedrin.carro import Carro
+	car = Carro()
+	return ''
+
+
 
 if __name__ == '__main__':
     app.run()
