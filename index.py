@@ -13,7 +13,7 @@ def provisioner():
 	return 'Provisioner...'
 
 @app.route('/')
-def brincando()
+def brincando():
 	from src.pedrin.carro import Carro
 	car = Carro()
 	return ''
