@@ -6,5 +6,5 @@ argparse==1.2.1
 distribute==0.6.24
 itsdangerous==0.23
 py==1.4.15
-pytest==2.3.5
+pyrg==0.2.6
 wsgiref==0.1.2
