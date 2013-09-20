@@ -8,9 +8,11 @@ app.config.from_object(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/provisioner.json/activate',methods=['GET', 'POST'])
+@app.route('/provisioner.json/activate',methods=['GET'])
 def provisioner():
-	return 'Provisioner...'
+    print request.args
+    json = request.args.get('json')
+    return 'Provisioner...%s' % json
 
 @app.route('/')
 def brincando():
@@ -18,7 +20,6 @@ def brincando():
 	car = Carro()
 	return ''
 
-
-
 if __name__ == '__main__':
+    app.debug = True
     app.run()
