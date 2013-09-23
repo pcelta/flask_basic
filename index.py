@@ -6,9 +6,9 @@ from src.services.provisioner import Provisioner
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+@app.route('/', methods=['GET,POST'])
+def index():
+    return 'Running...'
 
 @app.route('/provisioner.json/activate',methods=['POST'])
 def provisioner():
@@ -16,16 +16,11 @@ def provisioner():
     validator = RequestValidator()
     if (validator.validate(json)) :
         provisioner = Provisioner()
-        provisioner.activate(json)
-        return 'VALID JSON'
+        return provisioner.activate(json)
 
     return 'INVALID JSON'
 
-@app.route('/')
-def brincando():
-    from src.pedrin.carro import Carro
-    car = Carro()
-    return ''
+
 
 if __name__ == '__main__':
     app.debug = True
