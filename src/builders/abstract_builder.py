@@ -2,5 +2,6 @@ import abc
 
 class AbstractBuilder(object):
 
-    @abstractmethod
+    @abc.abstractmethod
     def build(self, order):
+        pass

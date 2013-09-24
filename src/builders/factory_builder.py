@@ -1,7 +1,5 @@
 import os, sys
 
-sys.path.append('./../../configs')
-
 from configs.loader import Loader
 
 class FactoryBuilder(object):
@@ -22,6 +20,6 @@ class FactoryBuilder(object):
 
         builders_path = 'src.builders.%s' % self.partner_name
         if action == 'activate' :
-            module = __import__(builders_path + '.activate')
-            return module.Activate()
+            module = __import__(builders_path + '.activate', globals(), locals(), ['ActivateBuilder'])
+            return module.ActivateBuilder()
 
