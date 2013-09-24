@@ -1,0 +1,11 @@
+def get_configs():
+    return { 
+        "partners" : {
+            "INTERPARTNER" : {
+                "internal_name" : "InterPartner"
+            }
+        },
+        "globals" : {
+            "aiai" : "iii"
+        }
+    }
