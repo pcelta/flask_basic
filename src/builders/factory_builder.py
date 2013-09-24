@@ -1,6 +1,6 @@
 import os, sys
 
-sys.path.append(os.path.abspath(os.path.curdir) +'/../../configs')
+sys.path.append('./../../configs')
 
 from configs.loader import Loader
 
@@ -19,10 +19,9 @@ class FactoryBuilder(object):
             raise ValueError('Invalid Argument')
 
         partner_settings = Loader.get_partner_settings(self.partner_name)
-        current_dir = os.path.abspath(os.path.curdir)
-        sys.path.append(current_dir + '/' + partner_settings['internal_name'])
-        
+
+        builders_path = 'src.builders.%s' % self.partner_name
         if action == 'activate' :
-            import activate
-            return Activate()
+            module = __import__(builders_path + '.activate')
+            return module.Activate()
 
