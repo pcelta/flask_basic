@@ -6,8 +6,15 @@ from src.services.provisioner import Provisioner
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route('/', methods=['GET,POST'])
+@app.route('/', methods=['GET'])
 def index():
+    
+    from src.builders.factory_builder import FactoryBuilder
+    factory = FactoryBuilder('interpartner')
+    builder = factory.create('activate')
+   
+
+
     return 'Running...'
 
 @app.route('/provisioner.json/activate',methods=['POST'])
