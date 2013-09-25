@@ -1,6 +1,6 @@
 import unittest
 import json
-from ....src.validators.order_validator import PartnerOrderValidator, OrderValidator
+from src.validators.order_validator import PartnerOrderValidator, OrderValidator
 
 class Test(unittest.TestCase) :
 

@@ -1,6 +1,6 @@
 import unittest
 #import ipdb; ipdb.set_trace()
-from ....src.validators.json_validator import RequestValidator
+from src.validators.json_validator import RequestValidator
 
 class TestRequestValidator(unittest.TestCase):
 
