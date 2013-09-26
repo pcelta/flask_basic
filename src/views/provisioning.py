@@ -21,8 +21,8 @@ class Provisioning(object):
     def activate(self, json):
         if (self.validator.validate(json)) :
             return self.provisioning_service.activate(json)
-        else :
-            return '{"error" : "Invalid JSON"}'
+
+        return '{"error" : "Invalid JSON"}'
 
     @staticmethod
     def create():
