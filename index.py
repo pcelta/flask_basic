@@ -1,33 +1,25 @@
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
-from src.validators.json_validator import RequestValidator
-from src.services.provisioner import Provisioner
+from src.views.provisioning import Provisioning
+from src.validators.json_validator import JsonValidator
+from src.services.provisioning import ProvisioningService
+from src.builders.factory_builder import FactoryBuilder
+from src.adapters.factory_adapter import FactoryAdapter
 
-# create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    
-    from src.builders.factory_builder import FactoryBuilder
-    factory = FactoryBuilder('interpartner')
-    builder = factory.create('activate')
-   
-
-
-    return 'Running...'
+    return 'TNT-Provisioning 2.0 Running...'
 
 @app.route('/provisioner.json/activate',methods=['POST'])
 def provisioner():
     json = request.data
-    validator = RequestValidator()
-    if (validator.validate(json)) :
-        provisioner = Provisioner()
-        return provisioner.activate(json)
+    provisioning_service = ProvisioningService(FactoryBuilder(), FactoryAdapter())
+    provisioning = Provisioning(JsonValidator(), provisioning_service)
+    response = provisioning.provision(json)
 
-    return 'INVALID JSON'
-
-
+    return response
 
 if __name__ == '__main__':
     app.debug = True
