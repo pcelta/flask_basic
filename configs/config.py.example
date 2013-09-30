@@ -2,7 +2,7 @@ def get_configs():
     return { 
         "partners" : {
             "INTERPARTNER" : {
-                "internal_name" : "InterPartner"
+                "wsdl" : "http://url-to-partner?wsdl"
             }
         },
         "globals" : {
