@@ -55,3 +55,11 @@ class Result(object):
 
         return result
 
+    @staticmethod
+    def create_with_succes_default():
+        result = Result()
+        result.is_success = True
+
+        return result
+
+
