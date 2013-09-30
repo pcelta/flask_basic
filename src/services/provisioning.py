@@ -1,6 +1,7 @@
 from src.validators.order_validator import PartnerOrderValidator
 from src.builders.factory_builder import FactoryBuilder
 from src.adapters.factory_adapter import FactoryAdapter
+from src.entities.content import Result
 
 class ProvisioningService(object):
 
@@ -29,6 +30,6 @@ class ProvisioningService(object):
                 adapter = self.factory_adapter.create(order['partner'])
                 result = adapter.call(builder.build(order))
             else :
-                order['result'] = 'Invalid data'
+                order['result'] = Result.create_with_partner_missing_error()
 
 
