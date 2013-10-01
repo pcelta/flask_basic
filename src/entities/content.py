@@ -28,7 +28,7 @@ class Result(object):
         return self._is_success
 
     @is_success.setter
-    def is_success(self, is_success)
+    def is_success(self, is_success):
         self._is_success = is_success
 
     @property
