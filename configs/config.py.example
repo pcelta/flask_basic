@@ -9,3 +9,6 @@ def get_configs():
             "aiai" : "iii"
         }
     }
+
+def get_env():
+    return 'testing'
