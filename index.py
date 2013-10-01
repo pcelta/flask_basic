@@ -9,13 +9,13 @@ app.config.from_object(__name__)
 def index():
     return 'TNT-Provisioning 2.0 Running...'
 
-@app.route('/provisioner.json/activate',methods=['POST'])
+@app.route('/activate',methods=['POST'])
 def activate():
     json = request.data
     provisioning = Provisioning.create()
     return provisioning.activate(json)
 
-@app.route('/provisioner.json/cancel', methods=['PUT'])
+@app.route('/cancel', methods=['PUT'])
 def cancel():
     json = request.data
     return 'Not Implemented'
