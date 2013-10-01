@@ -2,12 +2,13 @@ from src.validators.order_validator import PartnerOrderValidator
 from src.builders.factory_builder import FactoryBuilder
 from src.adapters.factory_adapter import FactoryAdapter
 from src.entities.content import Result
+from src.builders.response import Response
 
 class ProvisioningService(object):
 
     factory_builder = None
     factory_adapter = None
-    
+
     def __init__(self, factory_builder, factory_adapter):
 
         if not isinstance(factory_builder, FactoryBuilder):
@@ -20,7 +21,7 @@ class ProvisioningService(object):
         self.factory_adapter = factory_adapter
 
     def activate(self, json):
-
+        
         for order in json['orders'] :
 
             if 'partner' not in order :
@@ -30,8 +31,11 @@ class ProvisioningService(object):
             if validator.validate(order) :
                 builder = self.factory_builder.create(order['partner'], 'activate')
                 adapter = self.factory_adapter.create(order['partner'])
-                result = adapter.call(builder.build(order))
+                order['result'] = adapter.call(builder.build(order))
             else :
                 order['result'] = Result.create_with_partner_missing_error()
+
+        builder_reponse = Response()
+        return builder_reponse.build(json)
 
 
