@@ -9,9 +9,5 @@ class Adapter(AbstractAdapter):
         if not isinstance(content, Content) :
             raise ValueError('Invalid Argument. Must be Content instance')
 
-        result = Result()
-        result.is_success = True
-        result.message = 'MOCKED ADAPTER'
-
-        return result
+        return self._builder.build(None)
 
