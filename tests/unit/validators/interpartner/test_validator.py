@@ -3,8 +3,9 @@ import json
 from src.validators.interpartner.validator import Validator
 
 class TestInterpartnerValidator(unittest.TestCase):
+
     def test_validate_should_return_true_when_mandatories_fields_exists_in_json(self):
-        converted_json = json.loads('{"purchase" : "1", "contractId" : "", "password" : "xxx", "action" : "incluir", "customerIdentification" : "1"}')
+        converted_json = json.loads('{"partner" : "interpartner","purchase" : "1", "contractId" : "", "password" : "xxx", "action" : "incluir", "customerIdentification" : "1", "planCode" : "001", "startDate": "", "endDate" : "", "callback" : ""}') 
         
         validator = Validator()
         result = validator.validate("activate", converted_json)
