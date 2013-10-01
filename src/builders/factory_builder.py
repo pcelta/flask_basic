@@ -1,10 +1,10 @@
 import os, sys
-
+from configs import config
 from configs.loader import Loader
 
 class FactoryBuilder(object):
 
-    availables_actions = {'activate', 'cancel'}
+    availables_actions = {'activate', 'cancel', 'response'}
 
     def create(self, partner_name, action):
 
@@ -12,6 +12,7 @@ class FactoryBuilder(object):
             raise ValueError('Invalid Argument')
 
         partner_settings = Loader.get_partner_settings(partner_name)
+        partner_name = self._get_partner_name(partner_name)
         builders_path = 'src.builders.%s.%s' % (partner_name, action)
 
         if action == 'activate' :
@@ -27,4 +28,11 @@ class FactoryBuilder(object):
             return module.ResponseBuilder()
 
         raise ValueError('Invalid Argument. Action <%s> unknow' % action)
+
+    def _get_partner_name(self, partner_name):
+
+        if config.get_env() == 'testing' :
+            partner_name = 'mock'
+
+        return partner_name
 
