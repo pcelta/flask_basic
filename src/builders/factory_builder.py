@@ -12,7 +12,7 @@ class FactoryBuilder(object):
             raise ValueError('Invalid Argument')
 
         partner_settings = Loader.get_partner_settings(partner_name)
-        builders_path = 'src.builders.%s.%s' % partner_name, action
+        builders_path = 'src.builders.%s.%s' % (partner_name, action)
 
         if action == 'activate' :
             module = __import__(builders_path, globals(), locals(), ['ActivateBuilder'])

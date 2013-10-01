@@ -20,8 +20,10 @@ class ProvisioningService(object):
         self.factory_adapter = factory_adapter
 
     def activate(self, json):
+
         for order in json['orders'] :
-            if 'partner' is not order :
+
+            if 'partner' not in order :
                 continue
 
             validator = PartnerOrderValidator(order['partner'])

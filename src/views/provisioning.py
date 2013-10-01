@@ -2,6 +2,7 @@ from src.validators.json_validator import JsonValidator
 from src.services.provisioning import ProvisioningService
 from src.builders.factory_builder import FactoryBuilder
 from src.adapters.factory_adapter import FactoryAdapter
+import json
 
 class Provisioning(object):
 
@@ -18,9 +19,10 @@ class Provisioning(object):
         self.validator = validator
         self.provisioning_service = provisioning_service
     
-    def activate(self, json):
-        if (self.validator.validate(json)) :
-            return self.provisioning_service.activate(json)
+    def activate(self, str_json):
+        if (self.validator.validate(str_json)) :
+            converted_json = json.loads(str_json)
+            return self.provisioning_service.activate(converted_json)
 
         return '{"error" : "Invalid JSON"}'
 
