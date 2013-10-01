@@ -37,7 +37,7 @@ class Result(object):
 
     @message.setter
     def message(self, message):
-        self._message - message
+        self._message = message
 
     @property
     def json(self):
@@ -56,7 +56,7 @@ class Result(object):
         return result
 
     @staticmethod
-    def create_with_succes_default():
+    def create_with_success_default():
         result = Result()
         result.is_success = True
 
