@@ -50,7 +50,7 @@ class Result(object):
     @staticmethod
     def create_with_partner_missing_error():
         result = Result()
-        result.is_success = false
+        result.is_success = False
         result.message = "partner field missing"
 
         return result

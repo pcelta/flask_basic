@@ -25,6 +25,7 @@ class ProvisioningService(object):
         for order in json['orders'] :
 
             if 'partner' not in order :
+                order['result'] = Result.create_with_partner_missing_error()
                 continue
 
             validator = PartnerOrderValidator(order['partner'])
