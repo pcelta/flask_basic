@@ -2,6 +2,7 @@ from src.validators.json_validator import JsonValidator
 from src.services.provisioning import ProvisioningService
 from src.builders.factory_builder import FactoryBuilder
 from src.adapters.factory_adapter import FactoryAdapter
+from src.validators.factory_validator import FactoryValidator
 import json
 
 class Provisioning(object):
@@ -30,5 +31,9 @@ class Provisioning(object):
     @staticmethod
     def create():
         builder_factory = FactoryBuilder()
-        provisioning_service = ProvisioningService(builder_factory, FactoryAdapter(builder_factory))
+        validator_factory = FactoryValidator()
+        provisioning_service = ProvisioningService(
+            validator_factory,
+            builder_factory, 
+            FactoryAdapter(builder_factory))
         return Provisioning(JsonValidator(), provisioning_service)

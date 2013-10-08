@@ -48,10 +48,10 @@ class Result(object):
         self._json = json
 
     @staticmethod
-    def create_with_partner_missing_error():
+    def create_with_partner_missing_error(field_missing):
         result = Result()
         result.is_success = False
-        result.message = "partner field missing"
+        result.message = "field missing: <%s>" % field_missing
 
         return result
 
