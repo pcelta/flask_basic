@@ -1,24 +1,24 @@
-from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
+from flask import Flask, request
+from src.views.provisioning import Provisioning
+from src.validators.json_validator import JsonValidator
 
-# create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
+@app.route('/', methods=['GET'])
+def index():
+    return 'TNT-Provisioning 2.0 Running...'
 
-@app.route('/provisioner.json/activate',methods=['GET'])
-def provisioner():
-    print request.args
-    json = request.args.get('json')
-    return 'Provisioner...%s' % json
+@app.route('/activate',methods=['POST'])
+def activate():
+    json = request.data
+    provisioning = Provisioning.create()
+    return provisioning.activate(json)
 
-@app.route('/')
-def brincando():
-	from src.pedrin.carro import Carro
-	car = Carro()
-	return ''
+@app.route('/cancel', methods=['PUT'])
+def cancel():
+    json = request.data
+    return 'Not Implemented'
 
 if __name__ == '__main__':
     app.debug = True

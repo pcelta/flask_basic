@@ -1,0 +1,15 @@
+def get_configs():
+    return { 
+        "partners" : {
+            "INTERPARTNER" : {
+                "wsdl" : "http://url-to-partner?wsdl"
+            }
+        },
+        "globals" : {
+            "aiai" : "iii"
+        },
+        "enabled-queue" : True
+    }
+
+def get_env():
+    return 'testing'
