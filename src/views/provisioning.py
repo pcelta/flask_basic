@@ -22,8 +22,8 @@ class Provisioning(object):
     
     def activate(self, str_json):
         if (self.validator.validate(str_json)) :
-            converted_json = json.loads(str_json)
-            response = self.provisioning_service.activate(converted_json)
+            orders = json.loads(str_json)
+            response = self.provisioning_service.activate(orders)
             return json.dumps(response)
 
         return '{"error" : "Invalid JSON"}'
