@@ -5,12 +5,12 @@ class AbstractValidator(object):
     _missing_field = ""
 
     @abc.abstractmethod
-    def validate(self, action, converted_json):
+    def validate(self, action, order):
         pass
         
-    def _check(self, converted_json, mandatories_fields):
+    def _check(self, order, mandatories_fields):
         for mandatory_field in mandatories_fields :
-            if mandatory_field not in converted_json :
+            if mandatory_field not in order :
                 self._missing_field = mandatory_field
                 return False
                 

@@ -2,7 +2,7 @@ from src.validators.abstract_validator import AbstractValidator
 
 class Validator(AbstractValidator):
     
-    def validate(self, action, converted_json):
+    def validate(self, action, order):
         generic_fields = ["partner", "purchase"]
         
         if action == "activate" :
@@ -18,7 +18,7 @@ class Validator(AbstractValidator):
                 "callback"
             ]
             
-            return self._check(converted_json, mandatories_fields)
+            return self._check(order, mandatories_fields)
 
         if action == "cancel" :
             pass
