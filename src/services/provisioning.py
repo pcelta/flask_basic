@@ -26,9 +26,9 @@ class ProvisioningService(object):
         self._factory_adapter = factory_adapter
         self._factory_validator = factory_validator
 
-    def activate(self, json):
+    def activate(self, orders):
         
-        for order in json['orders'] :
+        for order in orders['orders'] :
 
             if 'partner' not in order :
                 order['result'] = Result.create_with_partner_missing_error('partner')
@@ -43,6 +43,6 @@ class ProvisioningService(object):
                 order['result'] = Result.create_with_partner_missing_error(validator.get_missing_field())
 
         builder_reponse = Response()
-        return builder_reponse.build(json)
+        return builder_reponse.build(orders)
 
 
