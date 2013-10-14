@@ -23,3 +23,23 @@ class AbstractProvisioner(object):
         self._factory_builder = factory_builder
         self._factory_adapter = factory_adapter
         self._factory_validator = factory_validator
+
+    @abc.abstractmethod
+    def activate(self, order):
+        pass
+
+    @abc.abstractmethod
+    def cancel(self, order):
+        pass
+
+    @abc.abstractmethod
+    def upgrade(self, order):
+        pass
+
+    @abc.abstractmethod
+    def downgrade(self, order):
+        pass
+
+    @abc.abstractmethod
+    def reactivate(self, order):
+        pass
