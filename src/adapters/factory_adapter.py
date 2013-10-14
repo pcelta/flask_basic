@@ -26,7 +26,7 @@ class FactoryAdapter(object):
 
     def _get_partner_name(self, partner_name):
 
-        if config.get_env() == 'testingg' :
+        if config.get_env() == 'testing' :
             partner_name = 'mock'
 
         return partner_name
