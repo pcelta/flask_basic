@@ -1,5 +1,6 @@
 from src.provisioners.factory_provisioner import FactoryProvisioner
 from src.entities.content import Result
+from src.builders.response import Response
 
 
 class Provisioner(object):
@@ -24,6 +25,7 @@ class Provisioner(object):
             provisioner = self._factory_provisioner.create(order['partner'])
             order['result'] = provisioner.activate(order)
 
-        return orders
+        builder_response = Response()
+        return builder_response.build(orders)
 
 
