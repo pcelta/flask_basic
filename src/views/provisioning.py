@@ -27,6 +27,14 @@ class Provisioning(object):
 
         return '{"error" : "Invalid JSON"}'
 
+    def upgrade(self, str_json):
+        if (self._validator.validate(str_json)) :
+            orders = json.loads(str_json)
+            response = self._service.upgrade(orders)
+            return json.dumps(response)
+
+        return '{"error" : "Invalid JSON"}'    
+
     @staticmethod
     def create():
         factory_provisioner = FactoryProvisioner()

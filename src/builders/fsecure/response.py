@@ -1,7 +1,7 @@
 from src.builders.abstract_builder import AbstractResponseBuilder
 from src.entities.content import Result
 
-class ResponseBuilder(AbstractResponseBuilder):
+class Builder(AbstractResponseBuilder):
 
     _SUCCESS                = 200
     _PARAMETER_ERROR        = 400

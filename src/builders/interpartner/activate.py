@@ -2,7 +2,7 @@
 from src.builders.abstract_builder import AbstractBuilder
 from src.entities.content import Content
 
-class ActivateBuilder(AbstractBuilder):
+class Builder(AbstractBuilder):
 
     def build(self, order):
         item_data = {

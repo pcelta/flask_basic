@@ -15,6 +15,12 @@ def activate():
     provisioning = Provisioning.create()
     return provisioning.activate(json)
 
+@app.route('/upgrade',methods=['PUT'])
+def upgrade():
+    json = request.data
+    provisioning = Provisioning.create()
+    return provisioning.upgrade(json)    
+
 @app.route('/cancel', methods=['PUT'])
 def cancel():
     json = request.data

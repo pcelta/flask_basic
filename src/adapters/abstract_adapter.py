@@ -1,5 +1,5 @@
 import abc
-from src.builders.interpartner.response import ResponseBuilder
+from src.builders.interpartner.response import Builder
 
 class AbstractAdapter(object):
 
