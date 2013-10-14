@@ -3,6 +3,24 @@ def get_configs():
         "partners" : {
             "INTERPARTNER" : {
                 "wsdl" : "http://url-to-partner?wsdl"
+            },
+            "FSECURE" : {
+                "url"                           : "https://safeavenue-tp.sp.f-secure.com/api/%s/v2.0/",
+                "endpoint_activate"             : "create_customer",
+                "endpoint_downgrade"            : "update_customer",
+                "endpoint_upgrade"              : "update_customer",
+                "endpoint_cancel"               : "suspend_customer",
+                "endpoint_reactivate"           : "resume_customer",
+                "authentication"                : {
+                    "telcel"    : {
+                        "user"      : "telcel-api",
+                        "password"  : "P2ewepaf"
+                    },
+                    "claro"    : {
+                        "user"      : "claro-api",
+                        "password"  : "Wr4Thuy5"
+                    }
+                }
             }
         },
         "globals" : {
@@ -12,4 +30,4 @@ def get_configs():
     }
 
 def get_env():
-    return 'testing'
+    return "testing"
