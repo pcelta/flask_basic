@@ -2,3 +2,4 @@ venv/*
 *.pyc
 build/*
 configs/config.py
+data/logs/*
