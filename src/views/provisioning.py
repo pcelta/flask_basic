@@ -33,7 +33,15 @@ class Provisioning(object):
             response = self._service.upgrade(orders)
             return json.dumps(response)
 
-        return '{"error" : "Invalid JSON"}'    
+        return '{"error" : "Invalid JSON"}'
+
+    def downgrade(self, str_json):
+        if (self._validator.validate(str_json)) :
+            orders = json.loads(str_json)
+            response = self._service.downgrade(orders)
+            return json.dumps(response)
+
+        return '{"error" : "Invalid JSON"}'         
 
     @staticmethod
     def create():

@@ -41,6 +41,22 @@ class Provisioner(object):
             order['result'] = provisioner.upgrade(order)
         
         builder_response = Response()
-        return builder_response.build(orders)    
+        return builder_response.build(orders) 
+
+    def downgrade(self, orders):
+        
+        for order in orders['orders'] :
+
+            if 'partner' not in order :
+                order['result'] = Result.create_with_partner_missing_error('partner')
+                continue
+
+            provisioner = self._factory_provisioner.create(order['partner'])
+            print provisioner
+            order['result'] = provisioner.downgrade(order)
+        
+        builder_response = Response()
+        return builder_response.build(orders)       
+
 
 

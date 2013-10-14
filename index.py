@@ -19,7 +19,13 @@ def activate():
 def upgrade():
     json = request.data
     provisioning = Provisioning.create()
-    return provisioning.upgrade(json)    
+    return provisioning.upgrade(json)   
+
+@app.route('/downgrade',methods=['PUT'])
+def downgrade():
+    json = request.data
+    provisioning = Provisioning.create()
+    return provisioning.downgrade(json)       
 
 @app.route('/cancel', methods=['PUT'])
 def cancel():

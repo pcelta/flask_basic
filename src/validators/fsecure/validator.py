@@ -24,7 +24,18 @@ class Validator(AbstractValidator):
             ]
 
             self.set_mandatory_fields_for_partner(mandatory_fields)
-            return self._check(order)    
+            return self._check(order)
+
+        if action == "downgrade" :
+
+            mandatory_fields = [
+                "license",
+                "account",
+                "customerIdentification",
+            ]
+
+            self.set_mandatory_fields_for_partner(mandatory_fields)
+            return self._check(order)         
 
         if action == "cancel" :
             pass
