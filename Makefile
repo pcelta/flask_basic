@@ -3,6 +3,6 @@ dep-install:
 	. venv/bin/activate
 	pip install -r requirements.txt
 
-configs:
+config:
 	cp -vf `pwd`/configs/config.py.example `pwd`/configs/config.py
 	mkdir -p `pwd`/data/logs
