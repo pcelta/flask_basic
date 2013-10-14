@@ -4,7 +4,7 @@ from configs.loader import Loader
 
 class FactoryBuilder(object):
 
-    availables_actions = {'activate', 'upgrade', 'cancel', 'response'}
+    availables_actions = {'activate', 'upgrade', 'downgrade', 'cancel', 'response'}
 
     def create(self, partner_name, action):
 
