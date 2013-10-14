@@ -33,6 +33,12 @@ def cancel():
     provisioning = Provisioning.create()
     return provisioning.cancel(json)
 
+@app.route('/reactivate', methods=['PUT'])
+def reactivate():
+    json = request.data
+    provisioning = Provisioning.create()
+    return provisioning.reactivate(json)
+
 if __name__ == '__main__':
     app.debug = True
     app.run()

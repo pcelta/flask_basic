@@ -70,6 +70,20 @@ class Provisioner(object):
         builder_response = Response()
         return builder_response.build(orders)
 
+    def reactivate(self, orders):
+
+        for order in orders['orders'] :
+
+            if not self._partner_key_exists(order) :
+                order['result'] = Result.create_with_partner_missing_error('partner')
+                continue
+
+            provisioner = self._factory_provisioner.create(order['partner'])
+            order['result'] = provisioner.reactivate(order)
+
+        builder_response = Response()
+        return builder_response.build(orders)
+
     def _partner_key_exists(self, order):
         if 'partner' not in order :
             return False

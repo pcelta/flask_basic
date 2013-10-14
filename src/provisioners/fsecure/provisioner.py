@@ -60,6 +60,20 @@ class Provisioner(AbstractProvisioner):
 
         return Result.create_with_partner_missing_error(validator.get_missing_field())
 
+    def reactivate(self, order):
+
+        validator = self._factory_validator.create(order['partner'])
+
+        if validator.validate("reactivate", order) :
+            builder = self._factory_builder.create(order['partner'], 'reactivate')
+            adapter = self._factory_adapter.create(order['partner'])
+            adapter.set_action("reactivate")
+            adapter.set_account(order["account"])
+
+            return adapter.call(builder.build(order))
+
+        return Result.create_with_partner_missing_error(validator.get_missing_field())
+
 
 
 
