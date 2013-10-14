@@ -18,7 +18,7 @@ class Provisioner(object):
         
         for order in orders['orders'] :
 
-            if 'partner' not in order :
+            if not self._partner_key_exists(order) :
                 order['result'] = Result.create_with_partner_missing_error('partner')
                 continue
 
@@ -32,12 +32,11 @@ class Provisioner(object):
         
         for order in orders['orders'] :
 
-            if 'partner' not in order :
+            if not self._partner_key_exists(order) :
                 order['result'] = Result.create_with_partner_missing_error('partner')
                 continue
 
             provisioner = self._factory_provisioner.create(order['partner'])
-            print provisioner
             order['result'] = provisioner.upgrade(order)
         
         builder_response = Response()
@@ -47,16 +46,35 @@ class Provisioner(object):
         
         for order in orders['orders'] :
 
-            if 'partner' not in order :
+            if not self._partner_key_exists(order) :
                 order['result'] = Result.create_with_partner_missing_error('partner')
                 continue
 
             provisioner = self._factory_provisioner.create(order['partner'])
-            print provisioner
             order['result'] = provisioner.downgrade(order)
         
         builder_response = Response()
-        return builder_response.build(orders)       
+        return builder_response.build(orders)
+
+    def cancel(self, orders):
+
+        for order in orders['orders'] :
+
+            if not self._partner_key_exists(order) :
+                order['result'] = Result.create_with_partner_missing_error('partner')
+                continue
+
+            provisioner = self._factory_provisioner.create(order['partner'])
+            order['result'] = provisioner.cancel(order)
+
+        builder_response = Response()
+        return builder_response.build(orders)
+
+    def _partner_key_exists(self, order):
+        if 'partner' not in order :
+            return False
+
+        return True
 
 
 

@@ -46,6 +46,20 @@ class Provisioner(AbstractProvisioner):
 
         return Result.create_with_partner_missing_error(validator.get_missing_field())          
 
+    def cancel(self, order):
+
+        validator = self._factory_validator.create(order['partner'])
+
+        if validator.validate("cancel", order) :
+            builder = self._factory_builder.create(order['partner'], 'cancel')
+            adapter = self._factory_adapter.create(order['partner'])
+            adapter.set_action("cancel")
+            adapter.set_account(order["account"])
+
+            return adapter.call(builder.build(order))
+
+        return Result.create_with_partner_missing_error(validator.get_missing_field())
+
 
 
 

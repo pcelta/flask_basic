@@ -30,7 +30,8 @@ def downgrade():
 @app.route('/cancel', methods=['PUT'])
 def cancel():
     json = request.data
-    return 'Not Implemented'
+    provisioning = Provisioning.create()
+    return provisioning.cancel(json)
 
 if __name__ == '__main__':
     app.debug = True
