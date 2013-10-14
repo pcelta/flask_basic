@@ -1,39 +1,33 @@
-from src.validators.json_validator import JsonValidator
-from src.services.provisioning import ProvisioningService
-from src.builders.factory_builder import FactoryBuilder
-from src.adapters.factory_adapter import FactoryAdapter
-from src.validators.factory_validator import FactoryValidator
 import json
+
+from src.validators.json_validator import JsonValidator
+from src.services.provisioning import Provisioner
+from src.provisioners.factory_provisioner import FactoryProvisioner
 
 class Provisioning(object):
 
-    validator = None
-    provisioning_service = None
+    _validator = None
+    _service = None
 
-    def __init__(self, validator, provisioning_service) :
+    def __init__(self, validator, service) :
         if not isinstance(validator, JsonValidator) :
             raise ValueError('Invalid Argument. Must be JsonValidator instance')
 
-        if not isinstance(provisioning_service, ProvisioningService) :
-            raise ValueError('Invalid Argument. Must be ProvisioningService instance')
+        if not isinstance(service, Provisioner) :
+            raise ValueError('Invalid Argument. Must be Provisioner instance')
 
-        self.validator = validator
-        self.provisioning_service = provisioning_service
+        self._validator         = validator
+        self._service   = service
     
     def activate(self, str_json):
-        if (self.validator.validate(str_json)) :
+        if (self._validator.validate(str_json)) :
             orders = json.loads(str_json)
-            response = self.provisioning_service.activate(orders)
+            response = self._service.activate(orders)
             return json.dumps(response)
 
         return '{"error" : "Invalid JSON"}'
 
     @staticmethod
     def create():
-        builder_factory = FactoryBuilder()
-        validator_factory = FactoryValidator()
-        provisioning_service = ProvisioningService(
-            validator_factory,
-            builder_factory, 
-            FactoryAdapter(builder_factory))
-        return Provisioning(JsonValidator(), provisioning_service)
+        factory_provisioner = FactoryProvisioner()
+        return Provisioning(JsonValidator(), Provisioner(factory_provisioner))

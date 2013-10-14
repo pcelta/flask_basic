@@ -26,4 +26,4 @@ class AbstractValidator(object):
         return self._missing_field
 
     def set_mandatory_fields_for_partner(self, mandatory_fields):
-        self._mandatory_fields = mandatory_fields
+        self._mandatory_fields_for_partner = mandatory_fields
