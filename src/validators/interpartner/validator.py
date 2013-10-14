@@ -3,11 +3,10 @@ from src.validators.abstract_validator import AbstractValidator
 class Validator(AbstractValidator):
     
     def validate(self, action, order):
-        generic_fields = ["partner", "purchase"]
-        
+
         if action == "activate" :
-        
-            mandatories_fields = generic_fields + [
+
+            mandatory_fields = [
                 "contractId",
                 "password",
                 "action",
@@ -15,10 +14,11 @@ class Validator(AbstractValidator):
                 "planCode",
                 "startDate",
                 "endDate",
-                "callback"
+                "purchase"
             ]
-            
-            return self._check(order, mandatories_fields)
+
+            self.set_mandatory_fields_for_partner(mandatory_fields)
+            return self._check(order)
 
         if action == "cancel" :
             pass

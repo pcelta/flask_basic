@@ -5,9 +5,10 @@ class Response(object):
         responses = { "responses" : []}
         for order in orders['orders']:
             result = {
-                "purchase"  : order['purchase'],
                 "success"   : order['result'].is_success
             }
+            if "purchase" in order:
+                result["purchase"] = order['purchase']
 
             if order['result'].message != None :
                 result['message'] = order['result'].message
