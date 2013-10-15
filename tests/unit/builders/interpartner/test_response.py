@@ -1,5 +1,5 @@
 import unittest
-from src.builders.interpartner.response import ResponseBuilder
+from src.builders.interpartner.response import Builder
 from src.entities.content import Result
 
 class TestResponseBuilder(unittest.TestCase):
@@ -7,7 +7,7 @@ class TestResponseBuilder(unittest.TestCase):
     def test_build_should_return_result_instance_successful_always(self):
     
         
-        builder = ResponseBuilder()
+        builder = Builder()
         result = builder.build([])
         
         self.assertTrue(result.is_success)
