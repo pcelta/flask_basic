@@ -21,6 +21,21 @@ def get_configs():
                         "password"  : "Wr4Thuy5"
                     }
                 }
+            },
+            "MCAFEE" : {
+                'ACTIVATE_REQUEST_TYPE'         : 'NEW',
+                'ACTIVATE_ITEM_ACTION'          : 'PD',
+                'ACTIVATE_ORDER_REF'            : '',
+                'OPTIN_GROUP_ID'                : '1',
+                'OPTIN_GROUP_CODE'              : 'NL',
+                'OPTIN_ID'                      : '2',
+                'OPTION_CODE'                   : 'VN',
+                'ITEM_QTY'                      : '1',
+                'CANCEL_REQUEST_TYPE'           : 'UPDATE',
+                'CANCEL_ITEM_ACTION'            : 'CN',
+                'CHANGE_PASSWORD_REQUEST_TYPE'  : 'UPDPROFILE',
+                'PREFERENCE_TYPE'               : 'LANG',
+                'url'                           : 'http://201.20.34.30/provisionamento.php',
             }
         },
         "globals" : {
