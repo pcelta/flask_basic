@@ -1,44 +1,15 @@
-from flask import Flask, request
-from src.views.provisioning import Provisioning
-from src.validators.json_validator import JsonValidator
+#!/usr/bin/env python
+from flask import Flask
+from flask.ext.script import Manager
 
 app = Flask(__name__)
-app.config.from_object(__name__)
+manager = Manager(app)
 
-@app.route('/', methods=['GET'])
-def index():
-    return 'TNT-Provisioning 2.0 Running...'
 
-@app.route('/activate',methods=['POST'])
-def activate():
-    json = request.data
-    provisioning = Provisioning.create()
-    return provisioning.activate(json)
+@manager.command
+def server():
+   import views
 
-@app.route('/upgrade',methods=['PUT'])
-def upgrade():
-    json = request.data
-    provisioning = Provisioning.create()
-    return provisioning.upgrade(json)   
 
-@app.route('/downgrade',methods=['PUT'])
-def downgrade():
-    json = request.data
-    provisioning = Provisioning.create()
-    return provisioning.downgrade(json)       
-
-@app.route('/cancel', methods=['PUT'])
-def cancel():
-    json = request.data
-    provisioning = Provisioning.create()
-    return provisioning.cancel(json)
-
-@app.route('/reactivate', methods=['PUT'])
-def reactivate():
-    json = request.data
-    provisioning = Provisioning.create()
-    return provisioning.reactivate(json)
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
+if __name__ == "__main__":
+    manager.run()
