@@ -3,3 +3,4 @@ venv/*
 build/*
 configs/config.py
 data/logs/*
+*.nja
