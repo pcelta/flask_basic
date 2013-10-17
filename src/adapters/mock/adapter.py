@@ -4,6 +4,12 @@ from src.entities.content import Content, Result
 
 class Adapter(AbstractAdapter):
 
+    def set_action(self, action):
+        pass
+
+    def set_account(self, account):
+        pass
+
     def call(self, content):
 
         if not isinstance(content, Content) :
