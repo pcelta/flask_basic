@@ -3,6 +3,8 @@ import json
 from src.validators.json_validator import JsonValidator
 from src.services.provisioning import Provisioner
 from src.provisioners.factory_provisioner import FactoryProvisioner
+from configs.loader import Loader
+from src.views.queue import Queue
 
 class Provisioning(object):
 
@@ -18,7 +20,7 @@ class Provisioning(object):
 
         self._validator         = validator
         self._service   = service
-    
+
     def activate(self, str_json):
         if (self._validator.validate(str_json)) :
             orders = json.loads(str_json)
@@ -61,5 +63,11 @@ class Provisioning(object):
 
     @staticmethod
     def create():
-        factory_provisioner = FactoryProvisioner()
-        return Provisioning(JsonValidator(), Provisioner(factory_provisioner))
+
+        enabled_queue = Loader.get_by_main_key("enabled-queue")
+        if not enabled_queue:
+            factory_provisioner = FactoryProvisioner()
+            return Provisioning(JsonValidator(), Provisioner(factory_provisioner))
+
+        return Queue(JsonValidator())
+
