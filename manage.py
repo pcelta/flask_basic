@@ -11,8 +11,6 @@ def server():
     from flask import request
     from src.views.provisioning import Provisioning
 
-    app = Flask()
-
     @app.route('/', methods=['GET'])
     def index():
         return 'TNT-Provisioning 2.0 Running...'
